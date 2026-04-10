@@ -269,7 +269,9 @@ export class Workers {
                                 `发现活动类型 "UrlReward" | 标题="${activity.title}" | offerId=${offerId}`
                             )
 
-                            await this.bot.activities.doUrlReward(basePromotion)
+                            // await this.bot.activities.doUrlReward(basePromotion)
+                            await this.bot.activities.doDaily(basePromotion)
+
                         }
                         break
                     }

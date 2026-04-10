@@ -8,6 +8,8 @@ import { AppReward } from './activities/app/AppReward'
 
 // API
 import { UrlReward } from './activities/api/UrlReward'
+import { UrlRewardNew } from './activities/api/UrlRewardNew'
+
 import { Quiz } from './activities/api/Quiz'
 import { FindClippy } from './activities/api/FindClippy'
 import { DoubleSearchPoints } from './activities/api/DoubleSearchPoints'
@@ -67,6 +69,11 @@ export default class Activities {
     // API Activities
     doUrlReward = async (promotion: BasePromotion): Promise<void> => {
         const urlReward = new UrlReward(this.bot)
+        await urlReward.doUrlReward(promotion)
+    }
+    // 临时解决办法
+    doDaily = async (promotion: BasePromotion): Promise<void> => {
+        const urlReward = new UrlRewardNew(this.bot)
         await urlReward.doUrlReward(promotion)
     }
 

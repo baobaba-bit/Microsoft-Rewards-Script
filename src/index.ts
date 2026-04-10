@@ -26,7 +26,7 @@ import { sendNtfy, flushNtfyQueue } from './logging/Ntfy'
 import { sendPushPlus, flushPushPlusQueue } from './logging/PushPlus'
 import type { DashboardData } from './interface/DashboardData'
 import type { AppDashboardData } from './interface/AppDashBoardData'
-
+import { PanelFlyoutData } from './interface/PanelFlyoutData'
 interface ExecutionContext {
     isMobile: boolean
     account: Account
@@ -82,6 +82,7 @@ export class MicrosoftRewardsBot {
     public mainDesktopPage!: Page // 主要的桌面端页面
 
     public userData: UserData // 用户数据
+    public panelData!: PanelFlyoutData
 
     public rewardsVersion: 'legacy' | 'modern' = 'legacy'
 
@@ -468,7 +469,7 @@ export class MicrosoftRewardsBot {
 
                 const data: DashboardData = await this.browser.func.getDashboardData()
                 const appData: AppDashboardData = await this.browser.func.getAppDashboardData()
-
+                this.panelData = await this.browser.func.getPanelFlyoutData()
                 // 设置地理位置
                 this.userData.geoLocale =
                     account.geoLocale === 'auto' ? data.userProfile.attributes.country : account.geoLocale.toLowerCase()
